@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import {
   Link,
   Links,
@@ -6,60 +7,82 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch
-} from "remix";
-import type { LinksFunction } from "remix";
+  useCatch,
+} from 'remix';
+import type { LinksFunction } from 'remix';
 
-import globalStylesUrl from "~/styles/global.css";
-import darkStylesUrl from "~/styles/dark.css";
+// eslint-disable-next-line import/no-unresolved
+import globalStylesUrl from '~/styles/global.css';
+// eslint-disable-next-line import/no-unresolved
+import darkStylesUrl from '~/styles/dark.css';
 
 // https://remix.run/api/app#links
-export let links: LinksFunction = () => {
-  return [
-    { rel: "stylesheet", href: globalStylesUrl },
-    {
-      rel: "stylesheet",
-      href: darkStylesUrl,
-      media: "(prefers-color-scheme: dark)"
-    }
-  ];
-};
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: globalStylesUrl },
+  {
+    rel: 'stylesheet',
+    href: darkStylesUrl,
+    media: '(prefers-color-scheme: dark)',
+  },
+];
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
-export default function App() {
-  return (
-    <Document title="Covid Museum">
-      <Layout>
-        <Outlet />
-      </Layout>
-    </Document>
-  );
-}
+const Document = ({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title: string;
+}) => (
+  <html lang="en">
+    <head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      {title ? <title>{title}</title> : null}
+      <Meta />
+      <Links />
+    </head>
+    <body>
+      {children}
+      <ScrollRestoration />
+      <Scripts />
+      {process.env.NODE_ENV === 'development' && <LiveReload />}
+    </body>
+  </html>
+);
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
-  return (
-    <Document title="Error!">
-      <Layout>
-        <div>
-          <h1>There was an error</h1>
-          <p>{error.message}</p>
-          <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
-        </div>
-      </Layout>
-    </Document>
-  );
-}
+const Layout = ({ children }: { children: ReactNode }) => (
+  <div className="remix-app">
+    <header className="remix-app__header">
+      <div className="container remix-app__header-content">
+        <Link to="/" title="Remix" className="remix-app__header-home-link">
+          Covid Museum
+        </Link>
+        <nav aria-label="Main navigation" className="remix-app__header-nav">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <a href="https://github.com/D1LL1G4F/Covid_Museum">GitHub</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div className="remix-app__main">
+      <div className="container remix-app__main-content">{children}</div>
+    </div>
+    <footer className="remix-app__footer">
+      <div className="container remix-app__footer-content">
+        <p>&copy; You!</p>
+      </div>
+    </footer>
+  </div>
+);
 
 // https://remix.run/docs/en/v1/api/conventions#catchboundary
-export function CatchBoundary() {
-  let caught = useCatch();
+export const CatchBoundary = () => {
+  const caught = useCatch();
 
   let message;
   switch (caught.status) {
@@ -85,68 +108,45 @@ export function CatchBoundary() {
     <Document title={`${caught.status} ${caught.statusText}`}>
       <Layout>
         <h1>
-          {caught.status}: {caught.statusText}
+          {caught.status}
+          :
+          {caught.statusText}
         </h1>
         {message}
       </Layout>
     </Document>
   );
-}
+};
 
-function Document({
-  children,
-  title
-}: {
-  children: React.ReactNode;
-  title?: string;
-}) {
+// https://remix.run/docs/en/v1/api/conventions#errorboundary
+export const ErrorBoundary = ({ error }: { error: Error }) => {
+  // eslint-disable-next-line no-console
+  console.error(error);
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        {title ? <title>{title}</title> : null}
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
-      </body>
-    </html>
+    <Document title="Error!">
+      <Layout>
+        <div>
+          <h1>There was an error</h1>
+          <p>{error.message}</p>
+          <hr />
+          <p>
+            Hey, developer, you should replace this with what you want your
+            users to see.
+          </p>
+        </div>
+      </Layout>
+    </Document>
   );
-}
+};
 
-function Layout({ children }: { children: React.ReactNode }) {
+// https://remix.run/api/conventions#default-export
+// https://remix.run/api/conventions#route-filenames
+export default function App() {
   return (
-    <div className="remix-app">
-      <header className="remix-app__header">
-        <div className="container remix-app__header-content">
-          <Link to="/" title="Remix" className="remix-app__header-home-link">
-            Covid Museum
-          </Link>
-          <nav aria-label="Main navigation" className="remix-app__header-nav">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <a href="https://github.com/D1LL1G4F/Covid_Museum">GitHub</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <div className="remix-app__main">
-        <div className="container remix-app__main-content">{children}</div>
-      </div>
-      <footer className="remix-app__footer">
-        <div className="container remix-app__footer-content">
-          <p>&copy; You!</p>
-        </div>
-      </footer>
-    </div>
+    <Document title="Covid Museum">
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Document>
   );
 }
