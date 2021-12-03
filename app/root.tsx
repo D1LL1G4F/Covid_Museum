@@ -1,5 +1,6 @@
 import { LiveReload } from "remix";
 import Layout, { LayoutColumn } from "@kiwicom/orbit-components/lib/Layout";
+import Navbar from "./components/navbar";
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
         <title>Covid Museum</title>
       </head>
       <body>
+        <Navbar />
         <Layout type="Booking">
           <LayoutColumn>Column1</LayoutColumn>
           <LayoutColumn>Column2</LayoutColumn>
