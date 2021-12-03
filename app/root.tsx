@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 import {
   Link,
   Links,
@@ -8,21 +8,25 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-} from 'remix';
-import type { LinksFunction } from 'remix';
+} from "remix";
+import type { LinksFunction } from "remix";
 
 // eslint-disable-next-line import/no-unresolved
-import globalStylesUrl from '~/styles/global.css';
+import globalStylesUrl from "~/styles/global.css";
 // eslint-disable-next-line import/no-unresolved
-import darkStylesUrl from '~/styles/dark.css';
+import darkStylesUrl from "~/styles/dark.css";
 
 // https://remix.run/api/app#links
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: globalStylesUrl },
+  { rel: "stylesheet", href: globalStylesUrl },
   {
-    rel: 'stylesheet',
+    rel: "stylesheet",
     href: darkStylesUrl,
-    media: '(prefers-color-scheme: dark)',
+    media: "(prefers-color-scheme: dark)",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700",
   },
 ];
 
@@ -45,7 +49,7 @@ const Document = ({
       {children}
       <ScrollRestoration />
       <Scripts />
-      {process.env.NODE_ENV === 'development' && <LiveReload />}
+      {process.env.NODE_ENV === "development" && <LiveReload />}
     </body>
   </html>
 );
@@ -108,9 +112,7 @@ export const CatchBoundary = () => {
     <Document title={`${caught.status} ${caught.statusText}`}>
       <Layout>
         <h1>
-          {caught.status}
-          :
-          {caught.statusText}
+          {caught.status}:{caught.statusText}
         </h1>
         {message}
       </Layout>
