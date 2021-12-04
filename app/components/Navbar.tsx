@@ -12,15 +12,27 @@ const Navbar: FC = () => (
         <img src="/exhibition.png" alt="Covid museum" height="40px" />
       </ButtonLink>
       <LinkList direction="row">
-        <TextLink type="secondary">Travel</TextLink>
-        <TextLink type="secondary">Rooms</TextLink>
-        <TextLink type="secondary">Careers</TextLink>
+        <TextLink type="secondary" href="/">
+          Home
+        </TextLink>
+        <TextLink type="secondary" href="/gallery">
+          Gallery
+        </TextLink>
+        <TextLink type="secondary" href="/exhibition">
+          Exhibitions
+        </TextLink>
       </LinkList>
       <Stack inline>
         <LinkList direction="row">
-          <TextLink type="secondary">English</TextLink>
-          <TextLink type="secondary">Help</TextLink>
-          <TextLink type="secondary">My account</TextLink>
+          <TextLink type="secondary" href="/about">
+            About
+          </TextLink>
+          <TextLink
+            type="secondary"
+            href="https://github.com/D1LL1G4F/Covid_Museum"
+          >
+            Github
+          </TextLink>
         </LinkList>
       </Stack>
     </Stack>
