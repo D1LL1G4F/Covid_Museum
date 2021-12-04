@@ -1,9 +1,9 @@
-import NavigationBar from "@kiwicom/orbit-components/lib/NavigationBar";
-import LinkList from "@kiwicom/orbit-components/lib/LinkList";
-import TextLink from "@kiwicom/orbit-components/lib/TextLink";
-import Stack from "@kiwicom/orbit-components/lib/Stack";
-import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink";
-import { FC } from "react";
+import NavigationBar from '@kiwicom/orbit-components/lib/NavigationBar';
+import LinkList from '@kiwicom/orbit-components/lib/LinkList';
+import TextLink from '@kiwicom/orbit-components/lib/TextLink';
+import Stack from '@kiwicom/orbit-components/lib/Stack';
+import ButtonLink from '@kiwicom/orbit-components/lib/ButtonLink';
+import { FC } from 'react';
 
 const Navbar: FC = () => (
   <NavigationBar>

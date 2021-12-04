@@ -1,7 +1,7 @@
-import { renderToString } from "react-dom/server";
-import { RemixServer, EntryContext } from "remix";
-import { ServerStyleSheet } from "styled-components";
-import StylesContext from "./components/StylesContext";
+import { renderToString } from 'react-dom/server';
+import { RemixServer, EntryContext } from 'remix';
+import { ServerStyleSheet } from 'styled-components';
+import StylesContext from './components/StylesContext';
 
 export default function handleRequest(
   request: Request,
@@ -34,7 +34,7 @@ export default function handleRequest(
     </StylesContext.Provider>,
   );
 
-  responseHeaders.set("Content-Type", "text/html");
+  responseHeaders.set('Content-Type', 'text/html');
 
   return new Response(`<!DOCTYPE html>${markup}`, {
     status: responseStatusCode,

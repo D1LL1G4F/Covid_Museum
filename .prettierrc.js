@@ -1,4 +1,5 @@
 module.exports = {
     arrowParens: "avoid",
-    parser: "typescript"
+    parser: "typescript",
+    singleQuote: true
 };
