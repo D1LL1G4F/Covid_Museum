@@ -4,10 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-  ],
+  extends: ['plugin:react/recommended', 'airbnb'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -16,10 +13,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
+  plugins: ['react', '@typescript-eslint'],
   settings: {
     'import/resolver': {
       node: {
@@ -30,7 +24,10 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/no-unescaped-entities': 'off',
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
     'react/function-component-definition': 'off',
     'import/extensions': [
       'error',
@@ -42,5 +39,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'arrow-parens': 'as-needed',
   },
 };

@@ -1,10 +1,7 @@
-import { LiveReload } from 'remix';
+import { LiveReload, Outlet } from 'remix';
 import Layout, { LayoutColumn } from '@kiwicom/orbit-components/lib/Layout';
 import { useContext } from 'react';
-import TextLink from '@kiwicom/orbit-components/lib/TextLink';
 import styled from 'styled-components';
-import Stack from '@kiwicom/orbit-components/lib/Stack';
-import Button from '@kiwicom/orbit-components/lib/Button';
 import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
 import StylesContext from './components/StylesContext';
 import Navbar from './components/Navbar';
@@ -41,11 +38,7 @@ export default function Root() {
 
           <Layout type="MMB">
             <LayoutColumn>
-              {/* TODO: HERE goes the content */}
-              <Stack>
-                <Button>My Button</Button>
-                <TextLink>Hello World!</TextLink>
-              </Stack>
+              <Outlet />
             </LayoutColumn>
           </Layout>
         </OverlordGrid>
