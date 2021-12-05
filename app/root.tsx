@@ -1,6 +1,9 @@
-import { LiveReload, Outlet } from 'remix';
+import {
+  Links,
+  LinksFunction, LiveReload, Meta, MetaFunction, Outlet, useCatch,
+} from 'remix';
 import Layout, { LayoutColumn } from '@kiwicom/orbit-components/lib/Layout';
-import { useContext } from 'react';
+import { ReactNode, useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
 import StylesContext from './components/StylesContext';
@@ -11,40 +14,104 @@ const NavContainer = styled.header`
   position: relative;
 `;
 
-const OverlordGrid = styled(Grid)`
+const GridWrapper = styled(Grid)`
   min-height: 100vh;
 `;
 
-export default function Root() {
+export const meta: MetaFunction = () => {
+  const description = 'Explore art and antics without getting sick!';
+  return {
+    viewport: 'width=device-width,initial-scale=1',
+    description,
+    keywords: 'covid-19,covid,coronavirus,museum,gallery,art',
+    'twitter:image':
+      'https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png',
+    'twitter:title': 'Covid Museum',
+    'twitter:description': description,
+    'og:image':
+      'https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png',
+    'og:title': 'Covid Museum',
+    'og:type': 'website',
+    'og:description': description,
+  };
+};
+
+export const links: LinksFunction = () => [
+  {
+    rel: 'icon',
+    href: '/exhibition.png',
+    type: 'image/png',
+  },
+];
+
+function Document({ children, title }: { children: ReactNode; title: string }) {
   const styles = useContext(StylesContext);
 
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
+        <Meta />
+        <Links />
         <style
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `</style>${styles}<style>`,
           }}
         />
-        <title>Covid Museum</title>
+        <title>{title}</title>
       </head>
       <body>
-        <OverlordGrid rows="64px 1fr">
+        <GridWrapper rows="64px 1fr">
           <NavContainer>
             <Navbar />
           </NavContainer>
 
           <Layout type="MMB">
-            <LayoutColumn>
-              <Outlet />
-            </LayoutColumn>
+            <LayoutColumn>{children}</LayoutColumn>
           </Layout>
-        </OverlordGrid>
+        </GridWrapper>
 
         {process.env.NODE_ENV === 'development' ? <LiveReload /> : null}
       </body>
     </html>
+  );
+}
+
+export default function Root() {
+  return (
+    <Document title="Covid Museum">
+      <Outlet />
+    </Document>
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <Document title={`Covid Museum | ${caught.status} ${caught.statusText}`}>
+      <div className="error-container">
+        <h1>
+          {caught.status}
+          {' '}
+          {caught.statusText}
+        </h1>
+      </div>
+    </Document>
+  );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  // eslint-disable-next-line no-console
+  console.error(error);
+
+  return (
+    <Document title="Covid Museum | Uh-oh!">
+      <div className="error-container">
+        <h1>App Error</h1>
+        <pre>{error.message}</pre>
+      </div>
+    </Document>
   );
 }
