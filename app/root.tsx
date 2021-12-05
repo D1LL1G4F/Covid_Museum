@@ -1,6 +1,13 @@
 import {
   Links,
-  LinksFunction, LiveReload, Meta, MetaFunction, Outlet, useCatch,
+  LinksFunction,
+  LiveReload,
+  Meta,
+  MetaFunction,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useCatch,
 } from 'remix';
 import Layout, { LayoutColumn } from '@kiwicom/orbit-components/lib/Layout';
 import { ReactNode, useContext } from 'react';
@@ -8,6 +15,7 @@ import styled from 'styled-components';
 import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
 import StylesContext from './components/StylesContext';
 import Navbar from './components/Navbar';
+import preloadedImages from './consts/preloadedImages';
 
 const NavContainer = styled.header`
   z-index: 99;
@@ -42,6 +50,11 @@ export const links: LinksFunction = () => [
     href: '/exhibition.png',
     type: 'image/png',
   },
+  ...preloadedImages.map(image => ({
+    rel: 'preload',
+    href: image.imageUrl,
+    as: 'image',
+  })),
 ];
 
 function Document({ children, title }: { children: ReactNode; title: string }) {
@@ -62,6 +75,8 @@ function Document({ children, title }: { children: ReactNode; title: string }) {
         <title>{title}</title>
       </head>
       <body>
+        <ScrollRestoration />
+        <Scripts />
         <GridWrapper rows="64px 1fr">
           <NavContainer>
             <Navbar />

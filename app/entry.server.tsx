@@ -14,10 +14,7 @@ export default function handleRequest(
   renderToString(
     sheet.collectStyles(
       <StylesContext.Provider value={null}>
-        <RemixServer
-          context={remixContext}
-          url={request.url}
-        />
+        <RemixServer context={remixContext} url={request.url} />
       </StylesContext.Provider>,
     ),
   );
@@ -27,10 +24,7 @@ export default function handleRequest(
 
   const markup = renderToString(
     <StylesContext.Provider value={styles}>
-      <RemixServer
-        context={remixContext}
-        url={request.url}
-      />
+      <RemixServer context={remixContext} url={request.url} />
     </StylesContext.Provider>,
   );
 

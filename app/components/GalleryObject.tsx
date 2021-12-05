@@ -6,15 +6,7 @@ import Table, {
 } from '@kiwicom/orbit-components/lib/Table';
 
 import { FC } from 'react';
-
-type Image = {
-  title: string;
-  dated: string;
-  department: string;
-  division: string;
-  period: string;
-  imageUrl: string;
-};
+import { Image } from '../types/apiTypes';
 
 type Props = {
   image: Image;
@@ -52,7 +44,7 @@ const GalleryObject: FC<Props> = ({ image, direction }) => (
       <Table>
         <TableBody>
           {Object.entries(image).map(([key, value]) => (
-            <TableRow>
+            <TableRow key={key}>
               <TableCell whiteSpace="normal">{key}</TableCell>
               <TableCell whiteSpace="normal">{value}</TableCell>
             </TableRow>
