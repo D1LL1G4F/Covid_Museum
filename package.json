@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
-    "lint": "eslint --max-warnings=0 './**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint --max-warnings=0 \"./**/*.{js,jsx,ts,tsx}\"",
     "postinstall": "remix setup node",
     "start": "remix-serve build"
   },

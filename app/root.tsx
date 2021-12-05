@@ -1,8 +1,19 @@
-import { LiveReload } from 'remix';
+import { LiveReload, Outlet } from 'remix';
 import Layout, { LayoutColumn } from '@kiwicom/orbit-components/lib/Layout';
 import { useContext } from 'react';
-import Navbar from './components/Navbar';
+import styled from 'styled-components';
+import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
 import StylesContext from './components/StylesContext';
+import Navbar from './components/Navbar';
+
+const NavContainer = styled.header`
+  z-index: 99;
+  position: relative;
+`;
+
+const OverlordGrid = styled(Grid)`
+  min-height: 100vh;
+`;
 
 export default function Root() {
   const styles = useContext(StylesContext);
@@ -20,11 +31,17 @@ export default function Root() {
         <title>Covid Museum</title>
       </head>
       <body>
-        <Navbar />
-        <Layout type="Booking">
-          <LayoutColumn>Column1</LayoutColumn>
-          <LayoutColumn>Column2</LayoutColumn>
-        </Layout>
+        <OverlordGrid rows="64px 1fr">
+          <NavContainer>
+            <Navbar />
+          </NavContainer>
+
+          <Layout type="MMB">
+            <LayoutColumn>
+              <Outlet />
+            </LayoutColumn>
+          </Layout>
+        </OverlordGrid>
 
         {process.env.NODE_ENV === 'development' ? <LiveReload /> : null}
       </body>
