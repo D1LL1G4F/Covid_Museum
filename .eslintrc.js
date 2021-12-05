@@ -39,6 +39,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'arrow-parens': 'as-needed',
+    'arrow-parens': 0,
   },
 };

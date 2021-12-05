@@ -1,5 +1,4 @@
 import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
-import { LoaderFunction } from '@remix-run/server-runtime';
 import { FC } from 'react';
 import GalleryObject from './GalleryObject';
 
@@ -32,18 +31,15 @@ const Images = [
   },
 ];
 
-const MainPage: FC = () => {
-  console.log(IndexArray);
-  return (
-    <Grid>
-      {IndexArray.map(i => (
-        <GalleryObject
-          image={Images[i]}
-          direction={i % 2 == 0 ? 'row' : 'row-reverse'}
-        />
-      ))}
-    </Grid>
-  );
-};
+const MainPage: FC = () => (
+  <Grid>
+    {IndexArray.map(i => (
+      <GalleryObject
+        image={Images[i]}
+        direction={i % 2 === 0 ? 'row' : 'row-reverse'}
+      />
+    ))}
+  </Grid>
+);
 
 export default MainPage;

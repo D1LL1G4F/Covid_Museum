@@ -1,7 +1,5 @@
-import MainPage from '~/components/MainPage';
+import MainPage from '../components/MainPage';
 
-const IndexRoute = () => {
-  return <MainPage />;
-};
+const IndexRoute = () => <MainPage />;
 
 export default IndexRoute;
