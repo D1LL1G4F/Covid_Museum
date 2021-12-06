@@ -1,10 +1,6 @@
-import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
-import { FC } from 'react';
-import GalleryObject from './GalleryObject';
+import { PreloadedImages } from '../types/apiTypes';
 
-const IndexArray = Array.from(Array(3).keys());
-
-const Images = [
+const preloadedImages: PreloadedImages = [
   {
     title: 'Black-figure Aryballos: Two heraldic bearded sirens with woman',
     dated: 'c. 600 BCE-575 BCE',
@@ -31,15 +27,4 @@ const Images = [
   },
 ];
 
-const MainPage: FC = () => (
-  <Grid>
-    {IndexArray.map(i => (
-      <GalleryObject
-        image={Images[i]}
-        direction={i % 2 === 0 ? 'row' : 'row-reverse'}
-      />
-    ))}
-  </Grid>
-);
-
-export default MainPage;
+export default preloadedImages;

@@ -15,11 +15,11 @@ const Navbar: FC = () => (
         <TextLink type="secondary" href="/">
           Home
         </TextLink>
+        <TextLink type="secondary" href="/exhibition">
+          Exhibition
+        </TextLink>
         <TextLink type="secondary" href="/gallery">
           Gallery
-        </TextLink>
-        <TextLink type="secondary" href="/exhibition">
-          Exhibitions
         </TextLink>
       </LinkList>
       <Stack inline>
