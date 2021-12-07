@@ -52,7 +52,7 @@ export const links: LinksFunction = () => [
   },
   ...preloadedImages.map(image => ({
     rel: 'preload',
-    href: image.imageUrl,
+    href: image.primaryimageurl,
     as: 'image',
   })),
 ];

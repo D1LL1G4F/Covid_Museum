@@ -15,8 +15,8 @@ const Navbar: FC = () => (
         <TextLink type="secondary" href="/">
           Home
         </TextLink>
-        <TextLink type="secondary" href="/exhibition">
-          Exhibition
+        <TextLink type="secondary" href="/exhibitions">
+          Exhibitions
         </TextLink>
         <TextLink type="secondary" href="/gallery">
           Gallery

@@ -7,7 +7,7 @@ const IndexRoute = () => (
     <Heading as="h2" type="title1">Welcome to the</Heading>
     <Heading as="h1" type="display">Covid Museum</Heading>
     <Heading as="h3" type="title2">
-      <TextLink href="/exhibition">🚪 ENTER 🚪</TextLink>
+      <TextLink href="/exhibitions">🚪 ENTER 🚪</TextLink>
     </Heading>
   </Stack>
 );
