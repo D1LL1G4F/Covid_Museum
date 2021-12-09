@@ -26,12 +26,18 @@ export const loader: LoaderFunction = async ({ params }): Promise<DetailObject> 
 const Detail: FC = () => {
   const data: DetailObject = useLoaderData();
   return (
-    <Box position="relative" minWidth="140%" right="20%">
+    <Box position="relative" largeDesktop={{ minWidth: '140%', right: '20%' }}>
       <Stack align="center" direction="column">
         <Heading as="h1">{data.title}</Heading>
-        <Grid columns="2fr 1fr" columnGap="10px">
+        <Grid
+          largeDesktop={{ columns: '2fr 1fr', rows: '1fr' }}
+          mediumMobile={{ rows: '1fr 1fr' }}
+          columnGap="10px"
+        >
           {data.images && <ImageList images={data.images} />}
-          <AsideInfo info={data} />
+          <Box minWidth="30%">
+            <AsideInfo info={data} />
+          </Box>
         </Grid>
         {data.contextualtext
         && (
