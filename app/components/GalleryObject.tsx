@@ -75,7 +75,7 @@ const GalleryObject: FC<Props> = ({ image, direction }) => (
           </TableRow>
         </TableBody>
       </Table>
-      <ButtonLink disabled href={`/gallery/${image.id}`} contentAlign="center">Details</ButtonLink>
+      <ButtonLink href={`/detail/${image.id}`} contentAlign="center">Details</ButtonLink>
     </Box>
   </Box>
 );
