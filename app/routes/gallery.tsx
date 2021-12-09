@@ -1,42 +1,53 @@
-import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
-import { LoaderFunction, useLoaderData } from 'remix';
+import { LoaderFunction, useLoaderData, useSearchParams } from 'remix';
 import axios from 'axios';
 import Stack from '@kiwicom/orbit-components/lib/Stack';
 import Box from '@kiwicom/orbit-components/lib/Box';
-import GalleryObject from '../components/GalleryObject';
 import { ObjectResponse } from '../types/apiTypes';
 import Paging from '../components/Paging';
+import GalleryObject from '../components/GalleryObject';
+import styles from '../styles/gallery.css';
 
 // server side fetching
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const pageNumber = url.searchParams.get('page');
+  const exhibitionId = url.searchParams.get('exhibitionId');
   const res = await axios.get<ObjectResponse>('https://api.harvardartmuseums.org/object', {
     params: {
       apikey: process.env.HARWARD_API_KEY,
       hasimage: 1,
       page: pageNumber,
+      exhibition: exhibitionId,
     },
   });
-  res.data.records = res.data.records.filter(record => record.primaryimageurl);
+
   return res.data;
 };
 
+export function links() {
+  return [{ rel: 'stylesheet', href: styles }];
+}
+
 const Gallery = () => {
   const response = useLoaderData<ObjectResponse>();
+  const [searchParams] = useSearchParams();
+
+  searchParams.delete('page');
 
   return (
     <Stack>
       <Box>
-        <Grid>
-          {response.records.map((image, index) => (
+        <Box className="container">
+          {response.records.map(image => (
             <GalleryObject
-              key={image.primaryimageurl}
+              key={image.id}
               image={image}
-              direction={index % 2 === 0 ? 'row' : 'row-reverse'}
+              columnClassName="item"
+              imageClassName="item__col item__image"
+              textClassName="item__col item__text"
             />
           ))}
-        </Grid>
+        </Box>
       </Box>
       <Box align="center" justify="center" display="flex" width="100%" direction="row">
         <Paging pageCount={response.info.pages} page={response.info.page} toUrl="/gallery" />

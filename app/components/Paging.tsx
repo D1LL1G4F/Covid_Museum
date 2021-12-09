@@ -1,7 +1,6 @@
 import Box from '@kiwicom/orbit-components/lib/Box';
 import Pagination from '@kiwicom/orbit-components/lib/Pagination';
-import { NavigateFunction } from 'react-router';
-import { useNavigate } from 'remix';
+import { useNavigate, useSearchParams } from 'remix';
 
 type Props = {
     pageCount: number;
@@ -9,19 +8,20 @@ type Props = {
     toUrl: string;
 }
 
-const loadPage = (toUrl: string, selectedPage: number, navigate: NavigateFunction) => {
-  navigate(`${toUrl}?page=${selectedPage}`);
-};
-
 const Paging = ({ pageCount, page, toUrl }: Props) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   return (
     <Box>
       <Pagination
         pageCount={pageCount}
         selectedPage={page}
-        onPageChange={selectedPage => loadPage(toUrl, selectedPage, navigate)}
+        onPageChange={selectedPage => {
+          searchParams.delete('page');
+          searchParams.append('page', selectedPage.toString());
+          navigate(`${toUrl}?${searchParams}`);
+        }}
       />
     </Box>
   );
