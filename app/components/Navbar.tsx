@@ -15,18 +15,15 @@ const Navbar: FC = () => (
         <TextLink type="secondary" href="/">
           Home
         </TextLink>
-        <TextLink type="secondary" href="/exhibitions">
-          Exhibitions
-        </TextLink>
         <TextLink type="secondary" href="/gallery">
           Gallery
+        </TextLink>
+        <TextLink type="secondary" href="/exhibitions">
+          Exhibitions
         </TextLink>
       </LinkList>
       <Stack inline>
         <LinkList direction="row">
-          <TextLink type="secondary" href="/about">
-            About
-          </TextLink>
           <TextLink
             type="secondary"
             href="https://github.com/D1LL1G4F/Covid_Museum"
