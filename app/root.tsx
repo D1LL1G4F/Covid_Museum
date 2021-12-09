@@ -33,11 +33,11 @@ export const meta: MetaFunction = () => {
     description,
     keywords: 'covid-19,covid,coronavirus,museum,gallery,art',
     'twitter:image':
-      'https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png',
+      'https://i.ibb.co/fGvpQGB/exhibition.png',
     'twitter:title': 'Covid Museum',
     'twitter:description': description,
     'og:image':
-      'https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png',
+      'https://i.ibb.co/fGvpQGB/exhibition.png',
     'og:title': 'Covid Museum',
     'og:type': 'website',
     'og:description': description,
