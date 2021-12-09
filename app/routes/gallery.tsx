@@ -14,7 +14,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const exhibitionId = url.searchParams.get('exhibitionId');
   const res = await axios.get<ObjectResponse>('https://api.harvardartmuseums.org/object', {
     params: {
-      apikey: '7a72b91e-6284-4662-8c01-2fd6532f3d90',
+      apikey: process.env.HARWARD_API_KEY,
       hasimage: 1,
       page: pageNumber,
       exhibition: exhibitionId,
