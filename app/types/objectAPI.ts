@@ -82,9 +82,9 @@ export type MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity
 }
 export type Terms = {
     medium?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
-    place?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
-    century?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
-    culture?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
+    place: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[];
+    century: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[];
+    culture: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[];
     topic?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
 }
 export type TitlesEntity = {

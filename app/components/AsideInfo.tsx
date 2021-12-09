@@ -1,6 +1,7 @@
 import Table, {
   TableBody, TableCell, TableHead, TableRow,
 } from '@kiwicom/orbit-components/lib/Table';
+import TextLink from '@kiwicom/orbit-components/lib/TextLink';
 import { FC } from 'react';
 import { DetailObject } from '../types/objectAPI';
 
@@ -18,7 +19,7 @@ const AsideInfo : FC<Props> = ({ info }) => (
     <TableBody>
       <TableRow>
         <TableCell>Name</TableCell>
-        <TableCell>{info.people ? info.people[0].displayname : 'Unknown'}</TableCell>
+        <TableCell>{info.people ? <TextLink href={`/gallery?person=${info.people[0].personid}`}>{info.people[0].displayname}</TextLink> : 'Unknown'}</TableCell>
       </TableRow>
       {info.people
             && (
@@ -54,22 +55,32 @@ const AsideInfo : FC<Props> = ({ info }) => (
       {info.period && (
         <TableRow>
           <TableCell scope="row">Period</TableCell>
-          <TableCell whiteSpace="normal">{info.period}</TableCell>
+          <TableCell whiteSpace="normal"><TextLink href={`/gallery?period=${info.periodid}`}>{info.period}</TextLink></TableCell>
         </TableRow>
       )}
       {info.places && (
         <TableRow>
           <TableCell>Created in</TableCell>
-          <TableCell whiteSpace="normal">{info.places.find(place => place.type === 'Creation Place')?.displayname ?? 'Unknown'}</TableCell>
+          <TableCell whiteSpace="normal">
+            {info.places.find(place => place.type === 'Creation Place')
+              ? (
+                <TextLink
+                  href={`/gallery?place=${info.places.find(place => place.type === 'Creation Place')?.placeid}`}
+                >
+                  {info.places.find(place => place.type === 'Creation Place')?.displayname}
+                </TextLink>
+              )
+              : 'Unknown'}
+          </TableCell>
         </TableRow>
       )}
       <TableRow>
         <TableCell scope="row">Century</TableCell>
-        <TableCell whiteSpace="normal">{info.century}</TableCell>
+        <TableCell whiteSpace="normal"><TextLink href={`/gallery?q=century:${info.century}`}>{info.century}</TextLink></TableCell>
       </TableRow>
       <TableRow>
         <TableCell scope="row">Culture</TableCell>
-        <TableCell whiteSpace="normal">{info.culture}</TableCell>
+        <TableCell whiteSpace="normal"><TextLink href={`/gallery?culture=${info.terms.culture[0].id}`}>{info.culture}</TextLink></TableCell>
       </TableRow>
       <TableRow>
         <TableCell scope="row">Dimensions</TableCell>
