@@ -57,7 +57,7 @@ const GalleryObject: FC<Props> = ({
         </Table>
       </Box>
       <Box>
-        <ButtonLink href={`/gallery/${image.id}`}>Details</ButtonLink>
+        <ButtonLink href={`/gallery/detail/${image.id}`}>Details</ButtonLink>
       </Box>
     </Box>
   </Box>

@@ -2,10 +2,10 @@ import { LoaderFunction, useLoaderData, useSearchParams } from 'remix';
 import axios from 'axios';
 import Stack from '@kiwicom/orbit-components/lib/Stack';
 import Box from '@kiwicom/orbit-components/lib/Box';
-import { ObjectResponse } from '../types/apiTypes';
-import Paging from '../components/Paging';
-import GalleryObject from '../components/GalleryObject';
-import styles from '../styles/gallery.css';
+import { ObjectResponse } from '../../types/apiTypes';
+import Paging from '../../components/Paging';
+import GalleryObject from '../../components/GalleryObject';
+import styles from '../../styles/gallery.css';
 
 // server side fetching
 export const loader: LoaderFunction = async ({ request }) => {
