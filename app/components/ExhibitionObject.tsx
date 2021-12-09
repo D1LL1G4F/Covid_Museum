@@ -26,7 +26,7 @@ const ExhibitionObject: FC<Props> = ({ exhibition }) => (
         </TableRow>
       </TableBody>
     </Table>
-    <ButtonLink disabled href={`/gallery/${exhibition.id}`} contentAlign="center">Details</ButtonLink>
+    <ButtonLink href={`/gallery?exhibitionId=${exhibition.id}`} contentAlign="center">Show gallery</ButtonLink>
   </Box>
 );
 

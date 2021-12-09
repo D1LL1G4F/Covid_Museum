@@ -11,10 +11,14 @@ import { ExhibitionResponse } from '../types/apiTypes';
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const pageNumber = url.searchParams.get('page');
+  const sortField = url.searchParams.get('sort') ?? 'chronological';
+
   const res = await axios.get<ExhibitionResponse>('https://api.harvardartmuseums.org/exhibition', {
     params: {
-      apikey: process.env.HARWARD_API_KEY,
+      apikey: '7a72b91e-6284-4662-8c01-2fd6532f3d90',
       page: pageNumber,
+      sort: sortField,
+      sortorder: 'desc',
     },
   });
   return res.data;
