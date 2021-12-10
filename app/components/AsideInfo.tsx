@@ -74,14 +74,18 @@ const AsideInfo : FC<Props> = ({ info }) => (
           </TableCell>
         </TableRow>
       )}
-      <TableRow>
-        <TableCell scope="row">Century</TableCell>
-        <TableCell whiteSpace="normal"><TextLink href={`/gallery?q=century:${info.century}`}>{info.century}</TextLink></TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell scope="row">Culture</TableCell>
-        <TableCell whiteSpace="normal"><TextLink href={`/gallery?culture=${info.terms.culture[0].id}`}>{info.culture}</TextLink></TableCell>
-      </TableRow>
+      {info.century && (
+        <TableRow>
+          <TableCell scope="row">Century</TableCell>
+          <TableCell whiteSpace="normal"><TextLink href={`/gallery?q=century:${info.century}`}>{info.century}</TextLink></TableCell>
+        </TableRow>
+      )}
+      {info.culture && (
+        <TableRow>
+          <TableCell scope="row">Culture</TableCell>
+          <TableCell whiteSpace="normal"><TextLink href={`/gallery?culture=${info.terms.culture[0].id}`}>{info.culture}</TextLink></TableCell>
+        </TableRow>
+      )}
       <TableRow>
         <TableCell scope="row">Dimensions</TableCell>
         <TableCell whiteSpace="normal">{info.dimensions}</TableCell>

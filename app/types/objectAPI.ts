@@ -131,8 +131,8 @@ export type DetailObject = {
     techniqueid: number;
     period?: string | null;
     periodid: number;
-    century: string;
-    culture: string;
+    century?: string;
+    culture?: string;
     style?: string | null;
     signed?: string | null;
     state?: string | null;
