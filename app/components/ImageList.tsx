@@ -12,7 +12,7 @@ const ImageList: FC<Props> = ({ images }) => {
 
   return (
     <Stack align="center" direction="column">
-      <img src={images[pageNum]?.baseimageurl ?? '/no-image.png'} style={{ maxWidth: '100%' }} alt={images[pageNum].imageid.toString()} />
+      <img src={images[pageNum]?.baseimageurl ?? '/no-image.png'} style={{ maxWidth: '100%' }} alt={images[pageNum]?.imageid.toString() ?? 'Unknown'} />
       <div>
         <Pagination
           selectedPage={pageNum + 1}
