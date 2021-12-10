@@ -15,7 +15,6 @@ import styled from 'styled-components';
 import Grid from '@kiwicom/orbit-components/lib/utils/Grid';
 import StylesContext from './components/StylesContext';
 import Navbar from './components/Navbar';
-import preloadedImages from './consts/preloadedImages';
 
 const NavContainer = styled.header`
   z-index: 99;
@@ -50,11 +49,6 @@ export const links: LinksFunction = () => [
     href: '/exhibition.png',
     type: 'image/png',
   },
-  ...preloadedImages.map(image => ({
-    rel: 'preload',
-    href: image.primaryimageurl,
-    as: 'image',
-  })),
 ];
 
 function Document({ children, title }: { children: ReactNode; title: string }) {
