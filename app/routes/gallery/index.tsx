@@ -10,14 +10,9 @@ import styles from '../../styles/gallery.css';
 // server side fetching
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
-  const pageNumber = url.searchParams.get('page');
-  const exhibitionId = url.searchParams.get('exhibitionId');
-  const res = await axios.get<ObjectResponse>('https://api.harvardartmuseums.org/object', {
+  const res = await axios.get<ObjectResponse>(`https://api.harvardartmuseums.org/object${url.search}`, {
     params: {
       apikey: process.env.HARWARD_API_KEY,
-      hasimage: 1,
-      page: pageNumber,
-      exhibition: exhibitionId,
     },
   });
 

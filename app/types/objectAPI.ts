@@ -82,9 +82,9 @@ export type MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity
 }
 export type Terms = {
     medium?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
-    place?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
-    century?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
-    culture?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
+    place: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[];
+    century: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[];
+    culture: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[];
     topic?: (MediumEntityOrPlaceEntityOrCenturyEntityOrCultureEntityOrTopicEntity)[] | null;
 }
 export type TitlesEntity = {
@@ -131,8 +131,8 @@ export type DetailObject = {
     techniqueid: number;
     period?: string | null;
     periodid: number;
-    century: string;
-    culture: string;
+    century?: string;
+    culture?: string;
     style?: string | null;
     signed?: string | null;
     state?: string | null;
